@@ -1,10 +1,17 @@
 1)InitializingBean,DisposableBean are lifecycleinterfaces and any bean initiated by Spring container can be modified at different states.
 2)Spring provides above 2 interfaces for those purpose.
 3)So Any Bean can implement these interfaces and override given method
-4)In general flow is 
-     4.1)Contructr 
-     4.2)AfterPropertiesSet
-     4.3)Init lifcycle method
-     4.4)destroy and cleanup almost same(called  when conatiner destroys bean) and destroy usage is discouraged as it couples code to spring.
+4)Lifecycle methods flow is 
      
+ From spring sequence of Lifecycle methods is ::
+ 1)Methods annotated with @PostConstruct
+ 2)afterPropertiesSet() as defined by the InitializingBean callback interface
+ 3)A custom configured init() method
+
+Destroy methods are called in the same order:
+  1)Methods annotated with @PreDestroy
+  2)destroy() as defined by the DisposableBean callback interface
+  3)A custom configured destroy() method
+     
+ NOTE::::destroy and cleanup almost same(called  when container destroys bean) and destroy usage is discouraged as it couples code to spring.
      

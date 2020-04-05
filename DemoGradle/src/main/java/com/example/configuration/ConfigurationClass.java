@@ -38,4 +38,10 @@ public class ConfigurationClass {
 	 }
 	 
 	 
+	 @Bean(name="axisBank")
+		public AxisBank getAxisBank(){
+			return new AxisBank();
+		}
+
+	 
 }
