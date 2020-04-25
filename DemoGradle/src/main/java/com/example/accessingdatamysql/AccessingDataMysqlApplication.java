@@ -6,8 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+//import com.example.swagger.config.CommonSwaggerConfiguration;
+
 
 @SpringBootApplication
 //@EnableAutoConfiguration
@@ -21,10 +25,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan(basePackages = "com.example")
  */
 
+//@Import({CommonSwaggerConfiguration.class})
+@EnableAutoConfiguration
 @EnableTransactionManagement(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages = "com.example")
 @EntityScan(basePackages = "com.example")
 @ComponentScan(basePackages ="com.example.*")
+
 
 public class AccessingDataMysqlApplication {
 
@@ -32,6 +39,7 @@ public class AccessingDataMysqlApplication {
    
     ConfigurableApplicationContext ctx= SpringApplication.run(AccessingDataMysqlApplication.class, args);
     
+   // System.out.println("Swagger URL is :: "+CommonSwaggerConfiguration.getSwaggerURL());
     
     // add a shutdown hook for the above context... 
     ctx.registerShutdownHook();

@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Anoop Butola
  *
  */
-public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
+public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
 }
