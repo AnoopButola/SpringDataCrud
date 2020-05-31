@@ -1,0 +1,95 @@
+#BASIC Docker image creation steps.
+
+1)Create Docker file which specifies what all need to be packaged.
+2)Pass this docker file as an input while creating docker image.
+ docker image build -t webimage
+
+
+####
+In my case I require 2 container one for web and another for sql and both will be communication over network.
+This network is just like LAN on which different container can interact with each other.
+Now this network can be created by following approaches:
+  a)CLI commands  can  be used which is kinda manual  step.
+  b)Second is docker-compose. Docker-compose is utility which is driven by yml file.This approach is more 
+    dynamic and preferred.
+
+
+##WorkFlow  
+1)Use 2 images , one for web and one for db
+2)web one is my own image.
+3)sql one can be directly pulled from docker hub.
+4)Introduce docker compose yml file which will help in inter communicating docker container.
+                  or 
+  Can achieve same using CLI manual commands as mentioned below.
+  
+  
+$ docker network create web-sql
+d7ffafd9b0c47964a5b25603231d521f4f9f1ea81e48ebdc031ec5083d902348
+
+HP@HP-PC MINGW64 ~/Build-Folder-Anoop
+$ docker network ls
+NETWORK ID          NAME                DRIVER              SCOPE
+7dfcf07f6844        bridge              bridge              local
+70a5c088ace3        host                host                local
+56c99d1fa238        none                null                local
+d7ffafd9b0c4        web-sql             bridge              local
+
+
+I will use the image provided by dockerhub to run as container. 
+Also we will specify following when running the container
+a. name of the mysql container 
+a. What should be the password for MYSQL
+b. We want to create the Database named db_example.
+c. specify the network web-sql on which this container should be created.
+d. start the container in detached mode.
+
+docker container run --name mysqldb --network web-sql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db_example -d mysql
+
+
+ 
+HP@HP-PC MINGW64 ~/Build-Folder-Anoop
+$ docker exec  -it mysqldb mysql -uroot -p
+the input device is not a TTY.  If you are using mintty, try prefixing the command with 'winpty'
+
+HP@HP-PC MINGW64 ~/Build-Folder-Anoop
+$ mintty docker exec  -it mysqldb mysql -uroot -p
+
+HP@HP-PC MINGW64 ~/Build-Folder-Anoop
+$ winpty docker exec  -it mysqldb mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.20 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show  databases;
++--------------------+
+| Database           |
++--------------------+
+| db_example         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+
+
+
+
+
+
+  
+
+    
+  
+
+

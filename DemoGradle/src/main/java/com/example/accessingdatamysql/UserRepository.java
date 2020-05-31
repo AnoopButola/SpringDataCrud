@@ -13,4 +13,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 	//https://www.baeldung.com/spring-data-jpa-query
 	@Query("SELECT u FROM User u WHERE u.role!=1")
 	Collection<User> findNonAdminUsers();
+	
+	User findByUsername(String username);
 }

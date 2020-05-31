@@ -4,7 +4,15 @@ import org.springframework.context.ApplicationEvent;
 
 public class EventModel extends ApplicationEvent{
 
-	
+	private EventModelDetail eventModelDetail;
+	public EventModelDetail getEventModelDetail() {
+		return eventModelDetail;
+	}
+
+	public void setEventModelDetail(EventModelDetail eventModelDetail) {
+		this.eventModelDetail = eventModelDetail;
+	}
+
 	public EventModel(Object source) {
 		super(source);
 		// TODO Auto-generated constructor stub
@@ -18,15 +26,23 @@ public class EventModel extends ApplicationEvent{
 	
 	public EventModel(EventModelDetail eventModel){
 		super(eventModel);
+		this.eventModelDetail=eventModel;
 	}
 	/**
 	 * 
 	 */
 	
-	static class EventModelDetail{
+	
+	
+	public  enum TaskType{
+		BOOTSTRAP_TASK,
+		NON_BOOTSTRAP_TASK
+	}
+	public static class EventModelDetail{
 		public EventModelDetail(){
 			
 		}
+		private  TaskType taskType;
 		private String message;
 		private String createdUser;
 		public String getMessage() {
@@ -41,6 +57,13 @@ public class EventModel extends ApplicationEvent{
 		public void setCreatedUser(String createdUser) {
 			this.createdUser = createdUser;
 		}
+		public TaskType getTaskType() {
+			return taskType;
+		}
+		public void setTaskType(TaskType taskType) {
+			this.taskType = taskType;
+		}
+		
 		
 	}
 	

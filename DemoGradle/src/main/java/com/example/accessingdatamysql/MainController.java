@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,9 @@ public class MainController {
   
   @Autowired
   private RoleRepository roleRepository;
+  
+  @Autowired
+	private PasswordEncoder bcryptEncoder;
 
   @PostMapping(path="/add") // Map ONLY POST Requests
   //@RequestParam does takes values like this 
@@ -42,7 +46,8 @@ public class MainController {
 	    List <User> userList=new ArrayList<User>();
 	    for(int i=1;i<10;i++){
 	    	User n = new User();
-			
+	    	n.setUsername("user"+i);
+			n.setPassword(bcryptEncoder.encode("password"+i));
 		    n.setRole(role);
 		    n.setName("user"+i);
 		    n.setEmail("user"+i+"@gmail.com");

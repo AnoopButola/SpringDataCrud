@@ -1,0 +1,3 @@
+From openjdk:8
+copy DemoGradle.jar /SpringWeb
+CMD ["java","-jar","DemoGradle.jar"]

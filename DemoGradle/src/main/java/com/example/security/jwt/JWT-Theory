@@ -1,0 +1,59 @@
+#//https://www.javainuse.com/spring/boot-jwt-mysql
+#JWT stands for Jason Web Token
+
+client											Server
+ 											(has secretKey)
+
+First Request for Auth::
+-----------username+password---->            Generate JWT if username and passwd ok.
+           
+<--------- <-------sends back JWT token to client as response -----------------------
+
+
+Second/Subsequent Request with JWT token as Header
+Header:JWT+ Payload ----------------sent to Server-------server validates using secret key.
+SUCCES response     <---if ok then resturn reponse<------------------------------  
+
+
+Structure of JWT(header.payload.structure)::
+JWT consists of three parts:
+
+1)header
+2)payload
+3)signature
+
+NOTE::All three are encoded using Base 64 encoding.(Not safe)
+
+Structure of Header
+
+Header{
+type:JWT       //it will be JWT always
+algo:RS512       //Hasing algorith to be used
+}
+
+
+Structure of Payload is simple the actual data taht need to be transfered to Server from Client.
+
+Payload
+{
+"user":"anoop"
+"role":"admin"
+}
+
+signature::
+
+var str=base64(header)+base64(payload)
+
+var sign=hashAlgorithmRS512(str,secretKey)
+
+
+How tokens are validated in case someone has tampered token inflight.
+Ans:: Actually token when sent to server always create signature using header+payload and
+ this signature is matched whether it exists in server of not.
+
+
+
+
+
+
+ 

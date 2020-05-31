@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.eventshandling.EventModel.TaskType;
+
 @RestController
 @RequestMapping(value="/event")
 public class EventController {
@@ -20,6 +22,7 @@ public class EventController {
 		EventModel.EventModelDetail model=new EventModel.EventModelDetail();
 		model.setCreatedUser("Rest_CREATED");
 		model.setMessage("ROLE IS ADMIN");
+		model.setTaskType(TaskType.NON_BOOTSTRAP_TASK);
 		EventModel event=new EventModel(model);
 		applicationContextProvider.getApplicationContext().publishEvent(event);
 		

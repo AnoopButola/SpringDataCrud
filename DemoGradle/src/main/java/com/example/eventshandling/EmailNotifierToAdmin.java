@@ -12,8 +12,25 @@ public class EmailNotifierToAdmin implements ApplicationListener  {
 	public void onApplicationEvent(ApplicationEvent event) {
 		
 		if(event instanceof EventModel){
+			EventModel model=(EventModel)event;
+			switch(model.getEventModelDetail().getTaskType()){
+			case BOOTSTRAP_TASK:
+				  System.out.println("Bootstrap event called::");
+				break;
+				
+			case NON_BOOTSTRAP_TASK:
+				 System.out.println("Non Bootstrap event called::");
+				break;
+				
+				default:
+					break;
+				
+			}
 			System.out.println("event of instnce type EventModel is trigerred");
 		}
+		
+		//setUser Password as encoded  one as were not set earlier.
+		
 	}
 	
 	
