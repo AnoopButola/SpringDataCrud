@@ -56,7 +56,7 @@ public class MainController {
 		
 	    userRepository.saveAll(userList);
 	
-	    addServer(null);
+	   // addServer(null);
     
     return "Saved";
   }
@@ -76,7 +76,7 @@ public class MainController {
 	  
 	  List <Server> serverList=new ArrayList<Server>();
 	    
-	  for(int i=0;i<10;i++){
+	  for(int i=0;i<1;i++){
 		  Server s=new Server();
 		  s.setHostName("172.20.186."+i+10);
 		  s.setServerPort(""+i+100);
@@ -85,7 +85,7 @@ public class MainController {
 	  }
 	  
 	  serverRepository.saveAll(serverList);
-	  addJob(null);
+	 // addJob(null);//commneted for testing
 	  return "added succesfully";
   }
   
