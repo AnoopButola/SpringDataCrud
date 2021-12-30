@@ -21,13 +21,13 @@ public class Server {
 
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO, generator = "server_gen")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "server_gen")
+	@GeneratedValue(strategy=GenerationType.AUTO, generator = "server_gen")
+	//@GeneratedValue(strategy = GenerationType.TABLE, generator = "server_gen")
 	 
 	//@Id
     //@TableGenerator(name = "server_gen", table = "CC_SEQUENCE", pkColumnName = "SEQUENCE_NAME", pkColumnValue = "CC_SERVER_SEQ", valueColumnName = "NEXT_VALUE", allocationSize = 1,initialValue=-1)
    //@Parameter(name = CustomSequenceGenrator.INCREMENT_PARAM, value = "1") ,
-	@GenericGenerator(name ="server_gen", strategy = "com.example.accessingdatamysql.CustomSequenceGenrator",
+/*	@GenericGenerator(name ="server_gen", strategy = "com.example.accessingdatamysql.CustomSequenceGenrator",
 	parameters = {
 			//@Parameter(name = CustomSequenceGenrator.INCREMENT_PARAM, value = "1"),
 			//@Parameter(name = CustomSequenceGenrator.INITIAL_PARAM, value = "1"),
@@ -38,11 +38,11 @@ public class Server {
 			     @Parameter(name = CustomSequenceGenrator.VALUE_COLUMN_PARAM, value = "NEXT_VALUE"),
 			     @Parameter(name = CustomSequenceGenrator.SEGMENT_VALUE_PARAM, value = "CC_SERVER_SEQ"),
 	
-	})
+	})*/
 	
 	//@GeneratedValue(strategy = GenerationType.TABLE, generator = "server_gen")
-     @Column(name = "id")
-   private Long  id;
+	@Column(name = "id")
+    private Long  id;
 	
 	private  String serverType;
 	private String hostName;

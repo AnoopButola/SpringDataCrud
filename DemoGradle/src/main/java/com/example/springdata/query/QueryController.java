@@ -58,7 +58,7 @@ public class QueryController {
 	@PostMapping(value="/employee")
 	public String saveEmployee(){
 		//persist 10 employee 
-		/*for(int i=1;i<=10;i++){
+		for(int i=1;i<=10;i++){
 		Employee emp=	new Employee();
 		emp.setAge(40+i);
 		emp.setName("Anoop"+i);
@@ -66,7 +66,7 @@ public class QueryController {
 		employeeRepository.save(emp);
 		
 		}
-		*/
+
 		//perisit phone number of each employee
 		for(int i=1;i<=3;i++){
 		Long id=Long.valueOf(i+2);

@@ -62,4 +62,16 @@ insert into details values('Ahmedabad', 'itachi@geeks.com',
                                1172, 'Code Jam finalist');
 insert into details values('Jaipur',    'kumar@geeks.com',
                                    1972, 'KVPY finalist');
+
+
+
+
+role table insertion:::
+insert into role values (1,'ADMIN',1);
+
+user table insertion::
+insert into user values(1,'user1@gmail.com','user1','password1','user1',1);
+
+
+
                                    

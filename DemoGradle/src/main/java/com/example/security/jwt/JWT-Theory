@@ -15,7 +15,7 @@ Header:JWT+ Payload ----------------sent to Server-------server validates using 
 SUCCES response     <---if ok then resturn reponse<------------------------------  
 
 
-Structure of JWT(header.payload.structure)::
+Structure of JWT(header.payload.signature)::
 JWT consists of three parts:
 
 1)header
