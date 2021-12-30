@@ -6,12 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import com.example.springdata.dto.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.accessingdatamysql.User;
 import com.example.accessingdatamysql.UserRepository;
@@ -47,6 +45,8 @@ public class QueryController {
 	PhoneRepository  phoneRepository;
 
 
+	@Autowired
+	QueryService queryService;
 	
 	//@ApiOperation(value = "View a list of all non admin users", response = Collection.class)
 	@GetMapping("/users")
@@ -173,7 +173,19 @@ public class QueryController {
 	
 	}
 	
-	
+
+	@GetMapping(value="/employees")
+	public List<?> employeeList(){
+       return queryService.getEmployeeList();
+	}
+
+
+	@PostMapping(value="/employees")
+	public String saveEmployees(@RequestBody List<EmployeeDTO> employeeDTOList){
+         //System.out.println(List<EmployeeDTO>.toString());
+		queryService.saveEmployees(employeeDTOList);
+		return "Employees saved successfully";
+	}
 	
 	
 	

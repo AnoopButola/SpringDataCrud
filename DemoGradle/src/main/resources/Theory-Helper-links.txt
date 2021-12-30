@@ -1,0 +1,4 @@
+
+1)https://www.baeldung.com/hibernate-entitymanager
+
+2)https://www.tutorialspoint.com/java_generics/java_generics_multiple_bounds.htm
